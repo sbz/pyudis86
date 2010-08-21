@@ -36,11 +36,22 @@ url = 'http://github.com/sbz/pyudis86/'
 version = open('VERSION').read().strip()
 major, minor, patch = version.split(".")
 
+long_description = open('README').read().strip()
+
+classifiers = """Development Status :: 4 - Beta
+License :: OSI Approved :: BSD License
+Operating System :: POSIX
+Programming Language :: C
+Programming Language :: Python
+Topic :: Software Development :: Disassemblers
+Topic :: Software Development :: Libraries
+Topic :: Software Development :: Libraries :: Python Modules""".split('\n')
+
 udis86_src = glob.glob('src/*.c')
 udis86_dep = glob.glob('src/*.h')
 udis86_lib = ['udis86']
-udis86_libdir = ['/usr/lib/']
-udis86_incdir = ['/usr/include/', '/usr/include/libudis86']
+udis86_libdir = ['/usr/local/lib/']
+udis86_incdir = ['/usr/local/include/', '/usr/local/include/libudis86']
 if 'bsd' in sys.platform[-1] or 'bsd' in os.uname()[0].lower():
     udis86_incdir = ['/usr/include/', '/usr/include/libudis86']
     udis86_libdir = ['/usr/local/lib/']
@@ -65,12 +76,13 @@ setup(
     name = 'pyudis86',
     version = version,
     description = "udis86 python binding",
+    long_description = long_description,
     author = "Sofian Brabez",
     author_email = "sbz@6dev.net",
     url = url,
     download_url = '%s/download/pyudis86-%s.tar.gz' % (url, version),
     license = 'BSD',
     platforms = ['Linux', 'BSD'],
-    classifiers = [],
+    classifiers = classifiers,
     ext_modules = [udis86]
 )
