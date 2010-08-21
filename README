@@ -1,2 +1,7 @@
-
+========
 pyudis86
+========
+
+udis86 python binding for library udis86 [1]
+
+[1] http://udis86.sourceforge.net/
