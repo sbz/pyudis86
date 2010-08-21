@@ -72,7 +72,6 @@ py_udis86_new(PyObject *self, PyObject *args) {
 
 static void
 py_udis86_dealloc(PyObject *self, PyObject *args) {
-
 	PyObject_Del(self);
 }
 
@@ -129,12 +128,14 @@ static PyObject *
 py_udis86_set_input_file(PyObject *self, PyObject *args) {
 	PyObject *file;
 
-	if (!PyArg_ParseTuple(args, "O", &file)) {
+	/* XXX no need to wrap it for now it provoke a random SEGV ...
+	 * if (!PyArg_ParseTuple(args, "O", &file)) {
 		PyErr_SetString(PyExc_TypeError, "invalid file argument");
 		return NULL;
 	}
 
 	ud_set_input_file(UDIS86_OBJ(self), (FILE *)PyCObject_AsVoidPtr(file));
+	*/
 
 	return Py_BuildValue("i", 0);
 }
